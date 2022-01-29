@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+    - PUID=1000
+    - PGID=1000
+    volumes:
+    - /home/barry/mongodb/database:/data/db
+    ports:
+    - 27017:27017
+    restart: unless-stopped
+
+
+# sudo docker-compose up -d
+# sudo docker exec -it mongodb bash
+# mongo
+
+# db.shop.remove( { } )
+# use shop
+# db.shop.insert({"category" : "Phone", "model" : "iPhone 6","producer" : "Apple","price" : 600})
+# db.shop.insert({"category" : "Phone", "model" : "iPhone 13","producer" : "Apple","price" : 1000})
+# db.shop.insert({"category" : "Laptop", "model" : "ThinkPad","producer" : "Lenovo","price" : 1100})
+
+# db.shop.find()
+# db.shop.find({"category":"Phone"}).count()
+# db.shop.distinct( "category" ).length
+# db.shop.distinct( "producer" )
+# db.shop.find({$and:[{"category":"Phone"},{price: 1000}]})
+# db.shop.find({$or:[{"model":"IPhone 6"},{"model": "ThinkPad"}]})
+# db.shop.find({"producer": {$in:["Lenovo"]}})
+# db.shop.findAndModify({query: {price: 1000}, update:{"name": "new phone","price": 2000}})
+# db.shop.findAndModify({query: {price: 600}, update:{ $inc: {price: 3000}}})
+# db.shop.find({"price": 3600})
+# db.shop.findAndModify({query: {price: 3600}, update:{ $inc: {price: 3000}}})
